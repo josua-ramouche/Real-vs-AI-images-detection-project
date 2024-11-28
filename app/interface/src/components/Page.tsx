@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import axios from 'axios';
 
 const fileTypes = ["JPG"];
 
@@ -12,8 +13,6 @@ const Page = () => {
   const [disableButton, setDisableButton] = useState(true);
   const [fileURL, setFileURL] = useState<string | null>(null); // Pour stocker l'URL de l'image
   const [displayDragAndDropPage,setDisplayDragAndDropPage] = useState("DRAGANDDROP");
-  const [isResultReady, setIsResultReady] = useState(false); // Pour gérer si on affiche la bar de progression ou non
-  //TODO : ajouter la bar de progression
 
   const handleChange = (file: File) => {
     setFile(file);
@@ -32,6 +31,27 @@ const Page = () => {
       setDisableButton(true);
       setFileURL(null); // Réinitialiser l'URL si nécessaire
       setFile(null);
+    } else {
+      try {
+        // On envoie l'image au modèle
+        if (file) {
+          const formData = new FormData();
+          formData.append('file', file);
+  
+          axios.post(
+          'http://localhost:8081/predict/image',
+          formData, // Envoyer le FormData
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data', // Type correct pour l'upload de fichiers
+            },
+          }
+        );
+      }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+
     }
   }
   // TODO : Obtenir le résultat du modèle
