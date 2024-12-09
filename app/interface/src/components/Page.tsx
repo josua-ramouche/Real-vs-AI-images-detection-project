@@ -58,12 +58,14 @@ const Page = () => {
           const data = response.data;
           if (data && typeof data === 'object') {
             if ('result' in data && 'accuracy' in data) {
-              if (data.result === true){
+              if (data.prediction === "real"){
                 setResult(resultTrue);
-              } else {
+              } else if (data.prediction === "fake") {
                 setResult(resultFalse);
+              } else {
+                console.error("Erreur : mauvais format de prediction");
               }
-              setAccuracy(data.accuracy);
+              setAccuracy(data.confidence);
               if (result != null && accuracy != null){
                 console.log("Réponse valide : ", data);
               } else {
