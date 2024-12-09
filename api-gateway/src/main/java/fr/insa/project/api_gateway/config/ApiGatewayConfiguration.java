@@ -15,7 +15,7 @@ public class ApiGatewayConfiguration {
     @Bean
     public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("prediction-service", r -> r.path("/predict/**")
+                .route("prediction-service", r -> r.path("/predict/image/**")
                         .uri("lb://prediction-service"))
                 .build();
     }
@@ -24,7 +24,6 @@ public class ApiGatewayConfiguration {
     public CorsWebFilter corsWebFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.addAllowedOriginPattern("*");
-        corsConfiguration.addAllowedOrigin("*");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.setAllowCredentials(true);
