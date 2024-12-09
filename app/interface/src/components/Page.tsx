@@ -44,7 +44,7 @@ const Page = () => {
         // On envoie l'image au modèle
         if (file) {
           const formData = new FormData();
-          formData.append('file', file);
+          formData.append('image', file);
   
           axios.post(
             API_BASE_URL,
