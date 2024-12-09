@@ -57,7 +57,7 @@ const Page = () => {
         ).then(function (response) {
           const data = response.data;
           if (data && typeof data === 'object') {
-            if ('result' in data && 'accuracy' in data) {
+            if ('prediction' in data && 'confidence' in data) {
               if (data.prediction === "real"){
                 setResult(resultTrue);
               } else if (data.prediction === "fake") {
