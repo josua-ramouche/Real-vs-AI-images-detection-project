@@ -3,6 +3,10 @@
 Pour pouvoir l'exécuter, vous avez besoin d'installer quelques dépendances. 
 
 ```
+npm i
+```
+puis
+```
 npm install @mui/material @emoticon/react @emoticon/styled react-drag-drop-files axios
 ```
 
