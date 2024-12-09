@@ -2,8 +2,8 @@ import { FileUploader } from "react-drag-drop-files";
 import "./Page.css";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import CheckIcon from '@mui/icons-material/Check';
-import CloseIcon from '@mui/icons-material/Close';
+import { FcApproval, FcHighPriority } from "react-icons/fc";
+
 import axios from 'axios';
 
 const fileTypes = ["JPG"];
@@ -87,9 +87,9 @@ const Page = () => {
 
   const DisplayResult = () => {
     if (result === resultTrue) {
-      return <h3> {result} <CheckIcon/></h3>
+      return <h3> {result} <FcApproval/></h3>
     } else if (result === resultFalse){
-      return <h3> {result} <CloseIcon/></h3>
+      return <h3> {result} <FcHighPriority /></h3>
     } else {
       console.error("Erreur : Le modèle n'a pas fournit de résultat");
       return <h3> Fonctionnalité pas encore implémentée </h3>
