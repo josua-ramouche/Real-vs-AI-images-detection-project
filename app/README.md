@@ -7,7 +7,7 @@ npm i
 ```
 puis
 ```
-npm install @mui/material @emoticon/react @emoticon/styled react-drag-drop-files axios react-icons
+npm install @mui/material @emoticon/react @emoticon/styled react-drag-drop-files axios react-icons react-router-dom
 ```
 
 Pour lancer l'interface :
