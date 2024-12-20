@@ -1,8 +1,8 @@
 import "./Page.css";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { FcApproval, FcHighPriority } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
+import DisplayCard from "./DisplayCard";
 
 const Demo = () => {
   const [result, setResult] = useState("");
@@ -24,17 +24,6 @@ const Demo = () => {
     setResult(statut);
     setAccuracy(accuracy); 
   };
-
-  const DisplayResult = () => {
-    if (result === resultTrue) {
-      return <h3> {result} <FcApproval/></h3>
-    } else if (result === resultFalse){
-      return <h3> {result} <FcHighPriority /></h3>
-    } else {
-      console.error("Erreur : Le modèle n'a pas fournit de résultat");
-      return <h3> Fonctionnalité pas encore implémentée </h3>
-    }
-  }
 
   return (
     <div className="page">
@@ -62,11 +51,9 @@ const Demo = () => {
         ))}
       </div>
         {isImageSelected ? (
-            <div className="page">
-            <h2> After analysis, this image is : </h2>
-            <DisplayResult/>
-            <h3> Accuracy of the result : {accuracy}% </h3>
-            </div>
+          <div className="card">
+            <DisplayCard result={result} accuracy={accuracy} />
+          </div>
         ) : (null)} 
         <Button
         variant="contained"
