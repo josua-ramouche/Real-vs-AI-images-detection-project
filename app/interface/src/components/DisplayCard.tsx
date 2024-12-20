@@ -52,7 +52,7 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ result, accuracy }) => {
         <Typography variant="h6" component="div" sx={{fontWeight: 'bold'}}>
         {content.description} {content.icon}
         </Typography>
-        <Typography variant="h6" component="div">
+        <Typography variant="h6" component="div" sx={{fontSize: 16}}>
         {content.precision}
         </Typography>
       </CardContent>
