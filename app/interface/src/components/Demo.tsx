@@ -69,29 +69,29 @@ const Demo = () => {
             <DisplayCard result={result} accuracy={accuracy} />
           </div>
         ) : (null)} 
-        <Button
-        variant="contained"
-        onClick={() => navigate("/home")}
-        sx={{
-            marginTop:"20px",
-            backgroundColor: "#65b2a0",
-            color: "#fff",
-            "&:hover": { backgroundColor: "#386258" },
-        }}
-        >
-        Home page
-        </Button>
-        <Button 
-        className="trigger-button"
-        onClick={handleButtonClick}
-        sx={{
-            backgroundColor: "#65b2a0",
-            marginTop: "10px",
-            color: "#fff",
-            "&:hover": { backgroundColor: "#386258" },
-          }}>
-             Easter egg
-        </Button>
+        <div className="boutons">
+          <Button
+          variant="contained"
+          onClick={() => navigate("/home")}
+          sx={{
+              backgroundColor: "#65b2a0",
+              color: "#fff",
+              "&:hover": { backgroundColor: "#386258" },
+          }}
+          >
+          Home page
+          </Button>
+          <Button 
+          className="trigger-button"
+          onClick={handleButtonClick}
+          sx={{
+              backgroundColor: "#65b2a0",
+              color: "#fff",
+              "&:hover": { backgroundColor: "#386258" },
+            }}>
+              Easter egg
+          </Button>
+        </div>
         {showAnimation && !animationEnded && (
         <div className="scooter-cat">
           <img

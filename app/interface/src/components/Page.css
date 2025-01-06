@@ -58,6 +58,12 @@ label {
 .card {
     margin-top: 10px;
 }
+.boutons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 14px;
+}
 
 .trigger-button {
     padding: 10px 20px;

@@ -35,8 +35,8 @@ const DisplayCard: React.FC<DisplayCardProps> = ({ result, accuracy }) => {
       return {
         title: "Error",
         icon: <FcAnswers />,
-        description: "We are sorry, the analyse failed",
-        precision: `Accuracy or the result : ${accuracy}%`,
+        description: "We are sorry, the analysis failed",
+        precision: `Please try again later`,
       };
     }
   };
