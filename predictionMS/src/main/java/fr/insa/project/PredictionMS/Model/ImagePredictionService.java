@@ -22,7 +22,7 @@ public class ImagePredictionService {
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-            ResponseEntity<String> response = restTemplate.exchange("http://localhost:8090/predict", HttpMethod.POST, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange("http://172.18.0.4:8090/predict", HttpMethod.POST, requestEntity, String.class);
 
             return response.getBody();
         } catch (Exception e) {
