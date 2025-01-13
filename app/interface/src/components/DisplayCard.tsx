@@ -4,7 +4,7 @@ import { FcAnswers, FcApproval, FcHighPriority } from "react-icons/fc";
 
 interface DisplayCardProps {
   result: string | null;
-  accuracy: string | null;
+  accuracy: number | null;
 }
 
 interface ResultContent {

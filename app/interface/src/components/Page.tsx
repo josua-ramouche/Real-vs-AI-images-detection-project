@@ -1,4 +1,5 @@
 import { FileUploader } from "react-drag-drop-files";
+import {MagnifyingGlass} from "react-loader-spinner";
 import "./Page.css";
 import { useState } from "react";
 import { Button } from "@mui/material";
@@ -13,7 +14,8 @@ const Page = () => {
   const [file, setFile] = useState<File | null>(null);
   const [disableButton, setDisableButton] = useState(true);
   const [result, setResult] = useState("");
-  const [accuracy, setAccuracy] = useState(null);
+  const [accuracy, setAccuracy] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false);
   const [fileURL, setFileURL] = useState<string | null>(null); // Pour stocker l'URL de l'image
   const [displayDragAndDropPage,setDisplayDragAndDropPage] = useState("DRAGANDDROP");
   const API_BASE_URL = 'http://192.168.37.156:50000/predict/image';
@@ -37,13 +39,15 @@ const Page = () => {
     setDisplayDragAndDropPage(value);
     if (value === "DRAGANDDROP") {
       setDisableButton(true);
-      setFileURL(null); // Réinitialiser l'URL si nécessaire
+      setFileURL(null);
       setFile(null);
       setResult("");
       setAccuracy(null);
+      setLoading(false);
     } else {
         // On envoie l'image au modèle
         if (file) {
+          setLoading(true);
           const formData = new FormData();
           formData.append('image', file);
   
@@ -66,7 +70,7 @@ const Page = () => {
               } else {
                 console.error("Erreur : mauvais format de prediction");
               }
-              setAccuracy(data.confidence);
+              setAccuracy(parseFloat(data.confidence.toFixed(2)));
               if (result != null && accuracy != null){
                 console.log("Réponse valide : ", data);
               } else {
@@ -80,6 +84,8 @@ const Page = () => {
           } 
         }).catch(function (error) {
           console.error('Error uploading file:', error);
+        }).finally(() => {
+          setLoading(false);
         });
       }
 
@@ -136,7 +142,11 @@ const Page = () => {
         <div className="page">
           {fileURL && <img src={fileURL} alt="Uploaded" style={{ maxWidth: "100%", maxHeight: "350px"}} />}
           <div className="card">
-            <DisplayCard result={result} accuracy={accuracy}/>
+          {loading ? (
+              <MagnifyingGlass color="#65b2a0"/>
+            ) : (
+              <DisplayCard result={result} accuracy={accuracy} />
+            )}
             </div>
           <Button
           variant="contained"
