@@ -22,11 +22,32 @@ public class ImagePredictionService {
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-            ResponseEntity<String> response = restTemplate.exchange("http://172.18.0.4:8090/predict", HttpMethod.POST, requestEntity, String.class);
+            ResponseEntity<String> response = restTemplate.exchange("http://172.18.0.4:8090/predict/", HttpMethod.POST, requestEntity, String.class);
 
             return response.getBody();
         } catch (Exception e) {
             return "Error: " + e.getMessage();
         }
+    }
+
+    public MultipartFile getGradCam(MultipartFile file) {
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+
+            MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
+            body.add("file", file.getResource());
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+
+            HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
+
+            ResponseEntity<MultipartFile> response = restTemplate.exchange("http://172.18.0.4:8090/predict/gradcam", HttpMethod.POST, requestEntity, MultipartFile.class);
+
+            return response.getBody();
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
+        }
+
     }
 }
