@@ -19,7 +19,7 @@ public class PredictionController{
     }
 
     
-    @PostMapping(value = "/image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/image/gradcam", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public MultipartFile predictImage(@RequestParam("image") MultipartFile file) {
         return predictionService.getGradCam(file);
     }
