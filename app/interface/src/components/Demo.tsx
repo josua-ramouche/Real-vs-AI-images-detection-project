@@ -26,10 +26,10 @@ const Demo = () => {
   };
 
   const images = [
-    { src: "/chat.jpg", statut: resultTrue, accuracy: "87,45" },
-    { src: "/chat_ia.webp", statut: resultFalse, accuracy: "91,88" }, //TODO : mettre les vraies accuracy du modèle
-    { src: "/oiseau_ia.jpg", statut: resultFalse, accuracy: "89,14" },
-    { src: "/oiseau.jpg", statut: resultTrue, accuracy: "85,06" },
+    { src: "/chat.jpg", statut: "real", accuracy: "87,45" },
+    { src: "/chat_ia.webp", statut: "fake", accuracy: "91,88" }, //TODO : mettre les vraies accuracy du modèle
+    { src: "/oiseau_ia.jpg", statut: "fake", accuracy: "89,14" },
+    { src: "/oiseau.jpg", statut: "real", accuracy: "85,06" },
   ];
 
   const handleImageClick = (src:string, statut: string, accuracy: string) => {
