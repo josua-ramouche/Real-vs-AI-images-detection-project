@@ -1,0 +1,45 @@
+services:
+  eureka-server:
+    container_name: eureka-server
+    image: josuaramouche/real_vs_ai-discovery_ms:${BUILD_ID}
+    ports:
+      - "8761:8761"
+    networks:
+      - project-network
+
+  model-ct:
+    container_name: model-ct
+    image: josuaramouche/real_vs_ai-model_ms:${BUILD_ID}
+    ports:
+      - "8090:8090"
+    depends_on:
+      - eureka-server
+    restart: on-failure
+    networks:
+      - project-network
+
+  prediction-ct:
+    container_name: prediction-ct
+    image: josuaramouche/real_vs_ai-prediction_ms:${BUILD_ID}
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+      - model-ct
+    restart: on-failure
+    networks:
+      - project-network
+  
+  api-gateway-ct:
+    container_name: api-gateway-ct
+    image: josuaramouche/real_vs_ai-api_gateway_ms:${BUILD_ID}
+    ports:
+      - "50000:8080"
+    depends_on:
+      - eureka-server
+      - model-ct
+    restart: on-failure
+    networks:
+      - project-network
+
+  
