@@ -1,11 +1,8 @@
 FROM ubuntu
 RUN apt update -y && apt install -y openjdk-17-jdk
-RUN apt install -y nano
 RUN apt -y install net-tools iputils-ping
 WORKDIR /app
-COPY ./Documents/DiscoveryMS-0.0.1-SNAPSHOT.jar  /app/DiscoveryMS.jar
-CMD ["chmod", "700", "/app/DiscoveryMS.jar"]
+COPY ./target/DiscoveryMS-0.0.1-SNAPSHOT.jar  /app/DiscoveryMS.jar
 EXPOSE 8761
 CMD ["java", "-jar", "/app/DiscoveryMS.jar"]
-CMD ["bash"]
 

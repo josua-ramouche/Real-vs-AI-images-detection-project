@@ -46,8 +46,9 @@ public class ImagePredictionService {
 
             return response.getBody();
         } catch (Exception e) {
-            return "Error: " + e.getMessage();
+            e.printStackTrace();
         }
 
+        return null;
     }
 }
