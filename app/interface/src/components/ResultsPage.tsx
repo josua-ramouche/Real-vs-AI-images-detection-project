@@ -21,7 +21,7 @@ const ResultsPage: React.FC = () => {
     const [accuracy, setAccuracy] = useState<number | null>(a);
     const [loading, setLoading] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const API_BASE_URL = 'http://192.168.37.156:50000/predict/image';
+    const API_BASE_URL = 'http://localhost:8080/predict/image';
     const navigate = useNavigate();
 
     useEffect(() => {

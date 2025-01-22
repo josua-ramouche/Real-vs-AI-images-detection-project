@@ -9,7 +9,7 @@ import { MagnifyingGlass } from "react-loader-spinner";
 
 const InfoAnalysePage: React.FC = () => {
     const location = useLocation();
-    const API_BASE_URL = 'http://192.168.37.156:50000/predict/image/gradcam';
+    const API_BASE_URL = 'http://localhost:8080/predict/image/gradcam';
     const [loading, setLoading] = useState(false);
     const { file, fileURL , result, accuracy} = location.state || {};
     const [grad, setgrad] = useState<File | null>(null);
