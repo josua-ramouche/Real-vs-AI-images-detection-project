@@ -24,7 +24,6 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - eureka-server
       - model-ct
     restart: on-failure
     networks:
@@ -36,7 +35,6 @@ services:
     ports:
       - "50000:8080"
     depends_on:
-      - eureka-server
       - model-ct
     restart: on-failure
     networks:
@@ -44,3 +42,4 @@ services:
 
 networks:
   project-network:
+    driver: bridge
