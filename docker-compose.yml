@@ -1,7 +1,8 @@
+version: "2.2"
 services:
   eureka-server:
     container_name: eureka-server
-    image: josuaramouche/real_vs_ai-discovery_ms:${BUILD_ID}
+    image: josuaramouche/real_vs_ai-discovery_ms:latest
     ports:
       - "8761:8761"
     networks:
@@ -9,7 +10,7 @@ services:
 
   model-ct:
     container_name: model-ct
-    image: josuaramouche/real_vs_ai-model_ms:${BUILD_ID}
+    image: josuaramouche/real_vs_ai-model_ms:latest
     ports:
       - "8090:8090"
     depends_on:
@@ -20,7 +21,7 @@ services:
 
   prediction-ct:
     container_name: prediction-ct
-    image: josuaramouche/real_vs_ai-prediction_ms:${BUILD_ID}
+    image: josuaramouche/real_vs_ai-prediction_ms:latest
     ports:
       - "8081:8081"
     depends_on:
@@ -31,7 +32,7 @@ services:
 
   api-gateway-ct:
     container_name: api-gateway-ct
-    image: josuaramouche/real_vs_ai-api_gateway_ms:${BUILD_ID}
+    image: josuaramouche/real_vs_ai-api_gateway_ms:latest
     ports:
       - "50000:8080"
     depends_on:
