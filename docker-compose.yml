@@ -29,7 +29,7 @@ services:
     restart: on-failure
     networks:
       - project-network
-  
+
   api-gateway-ct:
     container_name: api-gateway-ct
     image: josuaramouche/real_vs_ai-api_gateway_ms:${BUILD_ID}
