@@ -6,7 +6,8 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - project-network
+      project-network:
+        ipv4_address: 172.19.0.10
 
   model-ct:
     container_name: model-ct
@@ -17,7 +18,8 @@ services:
       - eureka-server
     restart: on-failure
     networks:
-      - project-network
+      project-network:
+        ipv4_address: 172.19.0.11
 
   prediction-ct:
     container_name: prediction-ct
@@ -28,7 +30,8 @@ services:
       - model-ct
     restart: on-failure
     networks:
-      - project-network
+      project-network:
+        ipv4_address: 172.19.0.12
 
   api-gateway-ct:
     container_name: api-gateway-ct
@@ -39,8 +42,12 @@ services:
       - model-ct
     restart: on-failure
     networks:
-      - project-network
+      project-network:
+        ipv4_address: 172.19.0.13
 
 networks:
   project-network:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
