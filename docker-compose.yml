@@ -12,6 +12,8 @@ services:
   model-ct:
     container_name: model-ct
     image: josuaramouche/real_vs_ai-model_ms:latest
+    stdin_open: true
+    tty: true
     ports:
       - "8090:8090"
     depends_on:
