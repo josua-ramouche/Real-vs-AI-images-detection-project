@@ -51,7 +51,7 @@ public class ImagePredictionService {
 
             if (
                     response.getHeaders().getContentType() != null &&
-                            response.getHeaders().getContentType().toString().startsWith("image")
+                    response.getHeaders().getContentType().toString().startsWith("image")
             ) {
                 return response.getBody();
             } else {
