@@ -30,7 +30,7 @@ public class ImagePredictionService {
         }
     }
 
-    public MultipartFile getGradCam(MultipartFile file) {
+    public byte[] getGradCam(MultipartFile file) {
         try {
             RestTemplate restTemplate = new RestTemplate();
 
@@ -42,9 +42,22 @@ public class ImagePredictionService {
 
             HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
-            ResponseEntity<MultipartFile> response = restTemplate.exchange("http://172.19.0.11:8090/predict/gradcam", HttpMethod.POST, requestEntity, MultipartFile.class);
+            ResponseEntity<byte[]> response = restTemplate.exchange(
+                    "http://172.19.0.11:8090/predict/gradcam",
+                    HttpMethod.POST,
+                    requestEntity,
+                    byte[].class
+            );
 
-            return response.getBody();
+            if (
+                    response.getHeaders().getContentType() != null &&
+                            response.getHeaders().getContentType().toString().startsWith("image")
+            ) {
+                return response.getBody();
+            } else {
+                System.err.println("Expected an image, but received: " + response.getHeaders().getContentType());
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
