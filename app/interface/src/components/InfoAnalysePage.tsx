@@ -30,15 +30,14 @@ const InfoAnalysePage: React.FC = () => {
                         headers: {
                             'Content-Type': 'multipart/form-data',
                         },
+                        responseType: 'blob',
                     });
     
                     const data = response.data;
-                    if (data && typeof data === 'object' && 'grad_cam' in data) {
-                        setgrad(data.grad_cam);
-                        if (grad !== null) {
-                            const imageUrl = URL.createObjectURL(grad);
-                            setgradURL(imageUrl);
-                        }
+
+                    if (data instanceof Blob && data.type.startsWith('image/')) {
+                        const imageUrl = URL.createObjectURL(data);
+                        setgradURL(imageUrl);
                     } else {
                         console.error("Unexpected response structure:", data);
                     }
@@ -71,11 +70,11 @@ const InfoAnalysePage: React.FC = () => {
                 <MagnifyingGlass color="#65b2a0" />
             ) : (
                 <div>
-                    {gradURL && <img src={gradURL} alt="Uploaded" style={{ maxWidth: "100%", maxHeight: "350px" }} />}
+                    {gradURL && <img src={gradURL} alt="Grad-CAM" style={{ maxWidth: "100%", maxHeight: "350px" }} />}
                     <Alert severity="info" sx={{marginBottom: "20px", marginTop: "20px", width: "400px", flexGrow: 1}}>
-                        A Grad-CAM is a technic use in Deep Learning to visualize and understand the decision made by the model.
+                        A Grad-CAM is a graphical representation used in Deep Learning to visualize and understand the decision made by the model.
                         It generates an heatmap that highlights the crucial regions of an image.
-                        The red areas are the pixels that help the model the most making the decision and the blue ones are the less important.
+                        The red areas are the pixels that help the most the model in making the decision and the blue ones are the less important.
                     </Alert>
                     <DisplayCard result={result} accuracy={accuracy}/>
                 </div>
