@@ -11,7 +11,7 @@ then
 npm install @mui/material @emoticon/react @emoticon/styled react-drag-drop-files axios react-icons react-router-dom react-loader-spinner
 ```
 
-To start the interface:
+To start the interface, in app/interface:
 ```
 npm run dev
 ```
