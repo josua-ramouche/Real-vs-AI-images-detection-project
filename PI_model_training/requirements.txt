@@ -1,0 +1,12 @@
+tqdm
+matplotlib
+torch
+torchvision
+torchmetrics
+torchinfo
+mlxtend
+fastapi
+uvicorn
+python-multipart
+opencv-python
+codecarbon
